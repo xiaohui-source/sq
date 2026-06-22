@@ -1,3 +1,7 @@
+.vscode/
+*.db
+*.sqlite
+*.vc.db
 build/
 install/
 log/

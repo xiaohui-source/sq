@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="dzb_description">
+    <xacro:arg name="initial_positions_file" default="initial_positions.yaml" />
+
+    <!-- Import dzb_description urdf file -->
+    <xacro:include filename="$(find dzb_description)/urdf/dzb_robot.urdf" />
+
+    <!-- Import control_xacro -->
+    <xacro:include filename="dzb_description.ros2_control.xacro" />
+
+
+    <xacro:dzb_description_ros2_control name="FakeSystem" initial_positions_file="$(arg initial_positions_file)"/>
+
+</robot>

@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="dzb_description">
+
+  <link name="base_link">
+    <inertial>
+      <origin
+        xyz="-0.00794873296226029 2.79578156542337E-07 -0.0323599121410942"
+        rpy="0 0 0" />
+      <mass
+        value="11.7478102512023" />
+      <inertia
+        ixx="0.269688429040624"
+        ixy="-1.25214409008442E-16"
+        ixz="-0.000101078698492448"
+        iyy="0.308452751381593"
+        iyz="-4.29365348065275E-09"
+        izz="0.554868320533366" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0.24975064"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://dzb_description/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://dzb_description/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="yaw_link">
+    <inertial>
+      <origin
+        xyz="-0.000223597776057738 3.6962169731064E-05 0.444159598622957"
+        rpy="0 0 0" />
+      <mass
+        value="3.68997322501054" />
+      <inertia
+        ixx="0.204246910479573"
+        ixy="-9.26766585365591E-09"
+        ixz="-9.00966490232957E-08"
+        iyy="0.204264844588394"
+        iyz="-1.15459907098693E-07"
+        izz="0.00710607613976426" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://dzb_description/meshes/yaw_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://dzb_description/meshes/yaw_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="yaw_joint" type="revolute">
+    <origin
+      xyz="0 0 0.30375064368"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="yaw_link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3.14159"
+      upper="3.14159"
+      effort="100"
+      velocity="1.0" />
+  </joint>
+
+  <link name="pitch_link">
+    <inertial>
+      <origin
+        xyz="0.178298443655374 0.049298701939695 -0.0650946443961729"
+        rpy="0 0 0" />
+      <mass
+        value="7.57489889329916" />
+      <inertia
+        ixx="0.00808355374542814"
+        ixy="-4.40743621463777E-07"
+        ixz="0.00384435610662304"
+        iyy="0.520049944772096"
+        iyz="2.19974076952109E-06"
+        izz="0.517000688952105" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 -0.136208968 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://dzb_description/meshes/pitch_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://dzb_description/meshes/pitch_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="pitch_joint" type="revolute">
+    <origin
+      xyz="0 0 1.0595"
+      rpy="0 0 0" />
+    <parent
+      link="yaw_link" />
+    <child
+      link="pitch_link" />
+    <axis
+      xyz="0 -1 0" />
+    <limit
+      lower="-1.57"
+      upper="1.57"
+      effort="100"
+      velocity="1.0" />
+  </joint>
+
+  <link name="trans_link">
+    <inertial>
+      <origin
+        xyz="-6.05811310796511E-05 0.0285360344702326 -0.0724988805906615"
+        rpy="0 0 0" />
+      <mass
+        value="1.44829003165002" />
+      <inertia
+        ixx="0.00237495276651114"
+        ixy="-2.00375450514615E-08"
+        ixz="-3.76360860418061E-08"
+        iyy="0.00180259163552294"
+        iyz="-2.96185092815891E-08"
+        izz="0.00310161035847844" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 -0.077392278 0"
+        rpy="0 0 1.5707963" />
+      <geometry>
+        <mesh
+          filename="package://dzb_description/meshes/trans_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://dzb_description/meshes/trans_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="trans_joint" type="prismatic">
+    <origin
+      xyz="0.8425 0 -0.128512729212872"
+      rpy="0 0 0" />
+    <parent
+      link="pitch_link" />
+    <child
+      link="trans_link" />
+    <axis
+      xyz="0.999971508872004 0 -0.00754860545049794" />
+    <limit
+      lower="0.0"
+      upper="0.5"
+      effort="100"
+      velocity="0.2" />
+  </joint>
+
+  <link name="frank_link">
+    <visual>
+      <origin
+        xyz="0.0375 -0.005997902 0"
+        rpy="1.5707963 0 -1.5707963" />
+      <geometry>
+        <mesh
+          filename="package://dzb_description/meshes/frank_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+  </link>
+
+  <joint name="frank_joint" type="fixed">
+    <origin
+      xyz="0.0001 -0.1555 -0.141"
+      rpy="0 0 0" />
+    <parent link="trans_link" />
+    <child link="frank_link" />
+  </joint>
+
+  <link name="ball_Link">
+    <inertial>
+      <origin
+        xyz="-0.555033708079709 -0.0601931941714015 0.181428488344469"
+        rpy="0 0 0" />
+      <mass
+        value="80.2843950995957" />
+      <inertia
+        ixx="21.178183363084"
+        ixy="-0.460124542205246"
+        ixz="-2.66377182688894"
+        iyy="27.9735404048905"
+        iyz="-1.59021854660683"
+        izz="14.547015431864" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.1" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.1" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="ball_joint" type="fixed">
+    <origin
+      xyz="0.00159107776274081 0.00187461933120248 -0.660674901980373"
+      rpy="0 0 0" />
+    <parent
+      link="trans_link" />
+    <child
+      link="ball_Link" />
+  </joint>
+
+</robot>

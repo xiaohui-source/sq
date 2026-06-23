@@ -1,0 +1,7 @@
+<library path="motor_hw_interface">
+  <class name="motor_control/MotorControlHardwareInterface"
+         type="motor_control::MotorControlHardwareInterface"
+         base_class_type="hardware_interface::SystemInterface">
+    <description>ROS 2 hardware interface for the 3-axis CAN motor chain.</description>
+  </class>
+</library>

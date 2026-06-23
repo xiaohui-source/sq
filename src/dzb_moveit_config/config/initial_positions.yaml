@@ -1,0 +1,6 @@
+# Default initial positions for dzb_description's ros2_control fake system
+
+initial_positions:
+  pitch_joint: 0
+  trans_joint: 0
+  yaw_joint: 0

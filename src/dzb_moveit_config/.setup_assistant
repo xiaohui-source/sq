@@ -1,0 +1,25 @@
+moveit_setup_assistant_config:
+  urdf:
+    package: dzb_description
+    relative_path: urdf/dzb_description.urdf.xacro
+  srdf:
+    relative_path: config/dzb_description.srdf
+  package_settings:
+    author_name: caoxiaohui
+    author_email: caochunhui@bupt.edu.cn
+    generated_timestamp: 1781183155
+  control_xacro:
+    command:
+      - position
+    state:
+      - position
+      - velocity
+  modified_urdf:
+    xacros:
+      - control_xacro
+  control_xacro:
+    command:
+      - position
+    state:
+      - position
+      - velocity

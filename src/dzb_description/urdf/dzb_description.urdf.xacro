@@ -1,7 +1,8 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="dzb_description">
     <xacro:arg name="initial_positions_file" default="$(find dzb_moveit_config)/config/initial_positions.yaml" />
-    <xacro:arg name="use_mock" default="true" />
+    <xacro:arg name="use_mock" default="false" />
+    <xacro:arg name="startup_enabled_joints" default="pitch_joint" />
 
     <!-- Import dzb_description urdf file -->
     <xacro:include filename="$(find dzb_description)/urdf/dzb_robot.urdf" />
@@ -13,6 +14,7 @@
     <xacro:dzb_description_ros2_control
         name="DzbHardwareSystem"
         initial_positions_file="$(arg initial_positions_file)"
-        use_mock="$(arg use_mock)"/>
+        use_mock="$(arg use_mock)"
+        startup_enabled_joints="$(arg startup_enabled_joints)"/>
 
 </robot>

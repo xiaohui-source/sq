@@ -4,7 +4,7 @@
   <name>motor_control</name>
   <version>2.0.0</version>
   <description>Simplified ROS2 Motor Control</description>
-  <maintainer email="wangyuanhao@todo.todo">wangyuanhao</maintainer>
+  <maintainer email="xiaohui@example.com">xiaohui</maintainer>
   <license>Apache-2.0</license>
   <buildtool_depend>ament_cmake</buildtool_depend>
   <build_depend>rclcpp</build_depend>

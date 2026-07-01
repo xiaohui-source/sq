@@ -2,15 +2,16 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
   <xacro:macro name="dzb_description_ros2_control"
-               params="name initial_positions_file use_mock:=true">
+               params="name initial_positions_file use_mock:=false startup_enabled_joints:=pitch_joint">
 
     <ros2_control name="${name}" type="system">
 
       <hardware>
         <plugin>motor_control/MotorControlHardwareInterface</plugin>
         <param name="use_mock">${use_mock}</param>
+        <param name="startup_enabled_joints">${startup_enabled_joints}</param>
         <param name="can_channel">0</param>
-        <param name="baud_rate">1000</param>
+        <param name="baud_rate">500</param>
       </hardware>
 
       <joint name="yaw_joint">

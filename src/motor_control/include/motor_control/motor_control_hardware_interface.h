@@ -4,11 +4,16 @@
 #include <hardware_interface/system_interface.hpp>
 #include <hardware_interface/types/hardware_interface_return_values.hpp>
 #include <rclcpp/rclcpp.hpp>
+#include <rclcpp/executors/single_threaded_executor.hpp>
 #include <rclcpp_lifecycle/state.hpp>
+#include <std_msgs/msg/string.hpp>
 
 #include <array>
+#include <atomic>
 #include <memory>
+#include <mutex>
 #include <string>
+#include <thread>
 #include <vector>
 
 namespace motor_control
@@ -55,9 +60,22 @@ private:
   std::vector<double> cmd_eff_;
 
   std::unique_ptr<IMotorDriver> driver_;
+  bool use_mock_mode_ = false;
+  std::vector<std::string> startup_enabled_joints_;
+  std::shared_ptr<rclcpp::Node> command_node_;
+  std::shared_ptr<rclcpp::executors::SingleThreadedExecutor> command_executor_;
+  rclcpp::Subscription<std_msgs::msg::String>::SharedPtr axis_command_sub_;
+  std::thread command_spin_thread_;
+  std::mutex driver_mutex_;
+  std::atomic<bool> command_thread_running_{false};
 
   // Logger
   rclcpp::Logger logger_;
+
+  bool sync_commands_to_current_state();
+  void start_command_listener();
+  void stop_command_listener();
+  void handle_axis_command(const std_msgs::msg::String::SharedPtr msg);
 };
 
 }  // namespace motor_control

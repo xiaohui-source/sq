@@ -26,7 +26,8 @@ MockDriver::MockDriver(std::size_t joint_count, double dt)
     state_eff_(joint_count, 0.0),
     cmd_pos_(joint_count, 0.0),
     cmd_vel_(joint_count, 0.0),
-    cmd_eff_(joint_count, 0.0)
+    cmd_eff_(joint_count, 0.0),
+    joint_enabled_(joint_count, true)
 {
 }
 
@@ -40,6 +41,7 @@ bool MockDriver::init()
   std::fill(cmd_pos_.begin(), cmd_pos_.end(), 0.0);
   std::fill(cmd_vel_.begin(), cmd_vel_.end(), 0.0);
   std::fill(cmd_eff_.begin(), cmd_eff_.end(), 0.0);
+  std::fill(joint_enabled_.begin(), joint_enabled_.end(), true);
   return true;
 }
 
@@ -55,6 +57,18 @@ bool MockDriver::enable()
 
 bool MockDriver::disable()
 {
+  return true;
+}
+
+bool MockDriver::enable_joint(const std::string& joint_name)
+{
+  (void)joint_name;
+  return true;
+}
+
+bool MockDriver::disable_joint(const std::string& joint_name)
+{
+  (void)joint_name;
   return true;
 }
 

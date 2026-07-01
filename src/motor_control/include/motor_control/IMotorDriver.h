@@ -1,6 +1,7 @@
 #ifndef MOTOR_CONTROL_IMOTOR_DRIVER_H_
 #define MOTOR_CONTROL_IMOTOR_DRIVER_H_
 
+#include <string>
 #include <vector>
 
 namespace motor_control
@@ -15,6 +16,8 @@ public:
   virtual bool open() { return true; }
   virtual bool enable() { return true; }
   virtual bool disable() { return true; }
+  virtual bool enable_joint(const std::string& joint_name) { (void)joint_name; return false; }
+  virtual bool disable_joint(const std::string& joint_name) { (void)joint_name; return false; }
   virtual void close() {}
 
   virtual bool read(

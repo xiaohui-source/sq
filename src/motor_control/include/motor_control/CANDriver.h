@@ -6,6 +6,7 @@
 
 #include <cstddef>
 #include <cstdint>
+#include <limits>
 #include <mutex>
 #include <string>
 #include <vector>
@@ -35,6 +36,8 @@ public:
   bool open() override;
   bool enable() override;
   bool disable() override;
+  bool enable_joint(const std::string& joint_name) override;
+  bool disable_joint(const std::string& joint_name) override;
   void close() override;
   bool read(
       std::vector<double>& state_pos,
@@ -58,6 +61,8 @@ private:
     double position = 0.0;
     double velocity = 0.0;
     double effort = 0.0;
+    bool actually_enabled = false;
+    bool has_fault = false;
   };
 
   bool transmit_frame(const VCI_CAN_OBJ& frame);
@@ -73,8 +78,13 @@ private:
   bool read_nonblocking_feedback();
   std::size_t find_joint_index_by_frame_id(std::uint32_t frame_id) const;
   ControlMode choose_mode(std::size_t joint_index, double cmd_pos, double cmd_vel, double cmd_eff) const;
+  bool all_zero_references_initialized() const;
+  bool is_joint_enabled(std::size_t joint_index) const;
+  void capture_zero_reference_if_needed(std::size_t joint_index, double absolute_position);
   double clamp_gear_ratio(double gear_ratio) const;
   double clamp_command_position(std::size_t joint_index, double position) const;
+  std::size_t find_joint_index_by_name(const std::string& joint_name) const;
+  bool set_joint_enabled(std::size_t joint_index, bool enabled);
   std::uint32_t baud_to_timing0() const;
   std::uint32_t baud_to_timing1() const;
 
@@ -84,6 +94,7 @@ private:
 
   mutable std::mutex mutex_;
   bool initialized_ = false;
+  bool device_handle_open_ = false;
   bool device_open_ = false;
   bool enabled_ = false;
 
@@ -93,6 +104,9 @@ private:
   std::vector<double> last_cmd_eff_;
   std::vector<ControlMode> last_modes_;
   std::vector<bool> mode_initialized_;
+  std::vector<double> zero_reference_pos_;
+  std::vector<bool> zero_reference_initialized_;
+  std::vector<bool> joint_enabled_;
 };
 
 }  // namespace motor_control

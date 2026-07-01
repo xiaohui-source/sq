@@ -20,6 +20,8 @@ public:
   bool open() override;
   bool enable() override;
   bool disable() override;
+  bool enable_joint(const std::string& joint_name) override;
+  bool disable_joint(const std::string& joint_name) override;
   void close() override;
   bool read(
       std::vector<double>& state_pos,
@@ -41,6 +43,7 @@ private:
   std::vector<double> cmd_pos_;
   std::vector<double> cmd_vel_;
   std::vector<double> cmd_eff_;
+  std::vector<bool> joint_enabled_;
 };
 
 }  // namespace motor_control

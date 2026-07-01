@@ -1,4 +1,5 @@
 # Limits for the Pilz planner
+# 限制末端执行器的最大速度和加速度、减速度、角速度，单位为m/s和rad/s
 cartesian_limits:
   max_trans_vel: 1.0
   max_trans_acc: 2.25
